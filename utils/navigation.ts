@@ -1,27 +1,21 @@
-import {
-  LayoutDashboard,
-  CheckSquare,
-  Tags,
-  User,
-  LogOut,
-} from "lucide-react";
+
 import type { NavItem, UserMenuAction } from "@/types/layout.types";
 
 export const dashboardNavItems: NavItem[] = [
   {
     title: "Dashboard",
     href: "/dashboard",
-    icon: LayoutDashboard,
+    icon: "dashboard",
   },
   {
     title: "Tasks",
     href: "/dashboard/tasks",
-    icon: CheckSquare,
+    icon: "tasks",
   },
   {
     title: "Categories",
     href: "/dashboard/categories",
-    icon: Tags,
+    icon: "categories",
   },
 ];
 
@@ -29,12 +23,12 @@ export const getUserMenuActions = (logout: () => void): UserMenuAction[] => [
   {
     label: "Profile",
     href: "/dashboard/profile",
-    icon: User,
+    icon: "user",
   },
   {
     label: "Logout",
     onClick: logout,
-    icon: LogOut,
+    icon: "logout",
     variant: "destructive",
   },
 ];

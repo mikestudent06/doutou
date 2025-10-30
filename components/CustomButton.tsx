@@ -1,4 +1,4 @@
-import { CustomButtonProps } from "@/type";
+import { CustomButtonProps } from "@/types/ui.types";
 import cn from "clsx";
 import React from "react";
 import {
@@ -15,6 +15,7 @@ const CustomButton = ({
   style,
   textStyle,
   leftIcon,
+  rightIcon,
   isLoading = false,
 }: CustomButtonProps) => {
   return (
@@ -35,6 +36,15 @@ const CustomButton = ({
           </Text>
         )}
       </View>
+
+      {rightIcon && (
+        <Image
+          source={
+            typeof rightIcon === "string" ? { uri: rightIcon } : rightIcon
+          }
+          className="size-6"
+        />
+      )}
     </TouchableOpacity>
   );
 };

@@ -1,14 +1,13 @@
 import { images } from "@/constants";
-import useAuthStore from "@/store/auth.store";
-import { TabBarIconProps } from "@/type";
+import { TabBarIconProps } from "@/types/ui.types";
 import cn from "clsx";
-import { Redirect, Tabs } from "expo-router";
-import { Image, Text, View } from "react-native";
+import { Tabs } from "expo-router";
+import { Image, ImageSourcePropType, Text, View } from "react-native";
 
 const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
   <View className="tab-icon">
     <Image
-      source={icon}
+      source={icon as ImageSourcePropType}
       className="size-10"
       resizeMode="contain"
       tintColor={focused ? "#FE8C00" : "#5D5F6D"}
@@ -25,10 +24,6 @@ const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
 );
 
 export default function TabLayout() {
-  const { isAuthenticated } = useAuthStore();
-  console.log("isAuthenticated", isAuthenticated);
-  if (!isAuthenticated) return <Redirect href="/sign-in" />;
-
   return (
     <Tabs
       screenOptions={{
