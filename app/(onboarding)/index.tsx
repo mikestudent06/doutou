@@ -6,7 +6,7 @@ import { FlatList, Image, ImageSourcePropType, Text, View } from "react-native";
 export default function OnboardingIntro() {
   return (
     <View className="flex-1 bg-secondary items-center pt-20 px-6 gap-6">
-      <View className="flex-row ">
+      <View className="flex-row">
         <Text className="font-quicksand-semibold text-3xl">
           {" "}
           Bienvenue dans{" "}
@@ -24,13 +24,16 @@ export default function OnboardingIntro() {
       <FlatList
         className="pt-10 w-full"
         data={app_features}
+        showsVerticalScrollIndicator={false}
         contentContainerClassName="pb-28"
         renderItem={({ item }) => (
           <View className="w-full bg-white shadow-white-200/10 backdrop-blur-xl rounded-lg flex-row items-center gap-4 mb-4 p-4">
-            <Image
-              source={item.icon as ImageSourcePropType}
-              className="size-10 bg-primary/10 rounded-full p-2"
-            />
+            <View className="size-10 bg-primary/10 rounded-full p-2">
+              <Image
+                source={item.icon as ImageSourcePropType}
+                className="size-full"
+              />
+            </View>
             <View className="flex-1">
               <Text className="text-lg font-quicksand-bold">{item.title}</Text>
               <Text className="text-base text-gray-500">
@@ -46,7 +49,7 @@ export default function OnboardingIntro() {
             textStyle="text-white font-quicksand-bold"
             isLoading={false}
             onPress={() => {
-              router.push("/(onboarding)/get-started");
+              router.push("/(tabs)");
             }}
           />
         }

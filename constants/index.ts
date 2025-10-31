@@ -18,6 +18,10 @@ import star from "@/assets/icons/star.png";
 import trash from "@/assets/icons/trash.png";
 import user from "@/assets/icons/user.png";
 import arrowBack from "../assets/icons/arrow-back.png";
+import liste from "@/assets/icons/liste.png";
+import bonjour from "@/assets/icons/bonjour.png";
+import chat from "@/assets/icons/chat.png";
+import analysis from "@/assets/icons/analysis.png";
 
 import avatar from "@/assets/images/avatar.png";
 import avocado from "@/assets/images/avocado.png";
@@ -79,6 +83,10 @@ export const images = {
   star,
   trash,
   user,
+  liste,
+  bonjour,
+  chat,
+  analysis,
 };
 
 export const APP_CONFIG = {
@@ -124,24 +132,24 @@ export const app_features = [
     id: 1,
     title: "Création rapide de tâches",
     description: "Ajoutez tâches, sous-tâches et catégories en un clin d’œil.",
-    icon: images.check,
+    icon: images.liste,
   },
   {
     id: 2,
     title: "Rappels intégrés",
     description: "Ne manquez plus rien grâce aux notifications.",
-    icon: images.check,
+    icon: images.bonjour,
   },
   {
     id: 3,
     title: "Doutou AI",
     description: "Assistant pour organiser et accélérer vos tâches.",
-    icon: images.check,
+    icon: images.chat,
   },
   {
     id: 4,
     title: "Vue d’ensemble",
     description: "Vue d’ensemble de vos tâches, sous-tâches et catégories.",
-    icon: images.check,
+    icon: images.analysis,
   },
 ];
