@@ -45,7 +45,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Tâches",
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ focused }: { focused: boolean }) => (
             <TabBarIcon title="Tâches" icon={images.list} focused={focused} />
           ),
         }}
@@ -54,7 +54,7 @@ export default function TabLayout() {
         name="calendar"
         options={{
           title: "Calendrier",
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ focused }: { focused: boolean }) => (
             <TabBarIcon
               title="Calendrier"
               icon={images.calendar}
@@ -67,7 +67,7 @@ export default function TabLayout() {
         name="overview"
         options={{
           title: "Aperçu",
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ focused }: { focused: boolean }) => (
             <TabBarIcon
               title="Aperçu"
               icon={images.overview}
@@ -80,7 +80,7 @@ export default function TabLayout() {
         name="pomodoro"
         options={{
           title: "Pomodoro",
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ focused }: { focused: boolean }) => (
             <TabBarIcon
               title="Pomodoro"
               icon={images.pomodoro}

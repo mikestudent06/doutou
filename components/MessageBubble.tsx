@@ -47,7 +47,7 @@ export default function MessageBubble({
       -1, // Répéter indéfiniment
       false
     );
-  }, []);
+  }, [translateY]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -86,7 +86,7 @@ export default function MessageBubble({
         style={{
           position: "absolute",
           bottom: -16,
-          right: 14,
+          right: 20,
           width: 0,
           height: 0,
           borderLeftWidth: 8,

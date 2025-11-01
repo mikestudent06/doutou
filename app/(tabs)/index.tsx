@@ -3,15 +3,26 @@ import RippleButton from "@/components/RippleButton";
 import { categories } from "@/constants";
 import { cn } from "@/lib/utils";
 import { Category } from "@/types/category.types";
+import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { FlatList, Platform, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Index() {
-  const [active, setActive] = useState("toutes");
+  const searchParams = useLocalSearchParams();
+  const [active, setActive] = useState(searchParams.category || "toutes");
   const filterData: (Category | { id: string; name: string })[] = categories
     ? [{ id: "toutes", name: "Toutes" }, ...categories]
     : [{ id: "toutes", name: "Toutes" }];
+
   console.log("filterData", filterData);
+
   const handlePress = (id: string) => {
     setActive(id);
   };
@@ -55,23 +66,25 @@ export default function Index() {
           keyExtractor={(item: Category | { id: string; name: string }) =>
             item.id.toString()
           }
-        />
-        <Text className="text-gray-500 text-sm">Michel</Text>
-      </View>
-      {/* Message avec animation bounce */}
-      <MessageBubble
-        message="Cliquez ici pour créer votre première tâche"
-        bottom={200}
-        right={60}
-      />
-
-      {/* Bouton avec ondes animées */}
-      <View className="absolute bottom-16 right-0 z-50">
-        <RippleButton
-          title="+"
-          onPress={() => {}}
-          rippleColor="rgba(254, 140, 0, 0.25)"
-          numberOfRipples={3}
+          ListEmptyComponent={({ item }: { item: Category }) => (
+            <View className="flex-1 justify-center items-center">
+              <Image source={item.emptyStateImage} className="w-10 h-10" />
+              {/* Message avec animation bounce */}
+              <MessageBubble
+                message="Cliquez ici pour créer votre première tâche"
+                bottom={200}
+              />
+              {/* Bouton avec ondes animées */}
+              <View className="absolute bottom-16 right-0 z-50">
+                <RippleButton
+                  title="+"
+                  onPress={() => {}}
+                  rippleColor="rgba(254, 140, 0, 0.25)"
+                  numberOfRipples={3}
+                />
+              </View>
+            </View>
+          )}
         />
       </View>
     </View>
