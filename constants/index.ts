@@ -27,12 +27,14 @@ import star from "@/assets/icons/star.png";
 import trash from "@/assets/icons/trash.png";
 import user from "@/assets/icons/user.png";
 import logo from "@/assets/images/logo.png";
+import empty from "@/assets/images/empty.png";
 import type { Category } from "@/types/category.types";
 import arrowBack from "../assets/icons/arrow-back.png";
 
 export const images = {
   // images
   logo,
+  empty,
 
   // icons
   calendar,

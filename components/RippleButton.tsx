@@ -16,6 +16,10 @@ interface RippleButtonProps {
   textStyle?: string;
   rippleColor?: string;
   numberOfRipples?: number;
+  bottom?: number;
+  top?: number;
+  right?: number;
+  left?: number;
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -27,6 +31,10 @@ export default function RippleButton({
   textStyle,
   rippleColor = "rgba(254, 140, 0, 0.3)", // amber-500 with opacity
   numberOfRipples = 3,
+  bottom,
+  top,
+  right,
+  left,
 }: RippleButtonProps) {
   // Créer un nombre fixe de valeurs partagées (maximum 5)
   const scale1 = useSharedValue(1);
@@ -98,8 +106,35 @@ export default function RippleButton({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numberOfRipples]);
 
+  // Build positioning style
+  const positioningStyle: {
+    position?: "absolute" | "relative";
+    bottom?: number;
+    top?: number;
+    right?: number;
+    left?: number;
+  } = {};
+
+  // Only use absolute positioning if any position prop is provided
+  const hasPositioning =
+    bottom !== undefined ||
+    top !== undefined ||
+    right !== undefined ||
+    left !== undefined;
+
+  if (hasPositioning) {
+    positioningStyle.position = "absolute";
+    if (bottom !== undefined) positioningStyle.bottom = bottom;
+    if (top !== undefined) positioningStyle.top = top;
+    if (right !== undefined) positioningStyle.right = right;
+    if (left !== undefined) positioningStyle.left = left;
+  }
+
   return (
-    <View className="relative bottom-16 right-6 items-center justify-center">
+    <View
+      className="relative items-center justify-center"
+      style={hasPositioning ? positioningStyle : undefined}
+    >
       {/* Ondes animées */}
       {ripples.map((ripple, index) => (
         <AnimatedView

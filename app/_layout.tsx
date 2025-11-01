@@ -1,5 +1,6 @@
 import "@/app/globals.css";
 import Loader from "@/components/Loader";
+import { useDatabase } from "@/hooks/useDatabase";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -14,14 +15,21 @@ export default function RootLayout() {
     "QuickSand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
   });
 
+  // Initialize database
+  const { isReady: dbReady, error: dbError } = useDatabase();
+
   useEffect(() => {
     if (error) throw error;
-    if (fontsLoaded) {
+    if (dbError) {
+      console.error("Database initialization error:", dbError);
+      // You might want to show an error screen here
+    }
+    if (fontsLoaded && dbReady) {
       SplashScreen.hideAsync();
     }
-  }, [error, fontsLoaded]);
+  }, [error, fontsLoaded, dbReady, dbError]);
 
-  if (!fontsLoaded) return <Loader />;
+  if (!fontsLoaded || !dbReady) return <Loader />;
 
   return (
     <>

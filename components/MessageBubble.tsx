@@ -13,6 +13,7 @@ import Animated, {
 interface MessageBubbleProps {
   message: string;
   bottom?: number;
+  top?: number;
   right?: number;
   left?: number;
   className?: string;
@@ -23,7 +24,8 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 
 export default function MessageBubble({
   message,
-  bottom = 100,
+  bottom,
+  top,
   right,
   left,
   className,
@@ -55,18 +57,35 @@ export default function MessageBubble({
     };
   });
 
+  // Build positioning style
+  const positioningStyle: {
+    position?: "absolute" | "relative";
+    bottom?: number;
+    top?: number;
+    right?: number;
+    left?: number;
+    zIndex?: number;
+  } = {};
+
+  // Only use absolute positioning if any position prop is provided
+  const hasPositioning =
+    bottom !== undefined ||
+    top !== undefined ||
+    right !== undefined ||
+    left !== undefined;
+
+  if (hasPositioning) {
+    positioningStyle.position = "absolute";
+    if (bottom !== undefined) positioningStyle.bottom = bottom;
+    if (top !== undefined) positioningStyle.top = top;
+    if (right !== undefined) positioningStyle.right = right;
+    if (left !== undefined) positioningStyle.left = left;
+    positioningStyle.zIndex = 40;
+  }
+
   return (
     <AnimatedView
-      style={[
-        {
-          position: "absolute",
-          bottom,
-          ...(right !== undefined && { right }),
-          ...(left !== undefined && { left }),
-          zIndex: 40,
-        },
-        animatedStyle,
-      ]}
+      style={[hasPositioning ? positioningStyle : {}, animatedStyle]}
       className={cn("relative ", className)}
     >
       {/* Bulle de message */}

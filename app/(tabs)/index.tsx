@@ -1,92 +1,64 @@
+import CategoriesFilter from "@/components/CategoriesFilter";
 import MessageBubble from "@/components/MessageBubble";
 import RippleButton from "@/components/RippleButton";
-import { categories } from "@/constants";
-import { cn } from "@/lib/utils";
-import { Category } from "@/types/category.types";
-import { useLocalSearchParams } from "expo-router";
-import { useState } from "react";
-import {
-  FlatList,
-  Image,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import Searchbar from "@/components/SearchBar";
+import TaskCard from "@/components/TaskCard";
+import { images } from "@/constants";
+import { useCategoryStore, useTaskStore } from "@/store";
+import { Task } from "@/types/task.types";
+import { useEffect } from "react";
+import { FlatList, Image, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
-  const searchParams = useLocalSearchParams();
-  const [active, setActive] = useState(searchParams.category || "toutes");
-  const filterData: (Category | { id: string; name: string })[] = categories
-    ? [{ id: "toutes", name: "Toutes" }, ...categories]
-    : [{ id: "toutes", name: "Toutes" }];
+  const { categories, fetchCategories } = useCategoryStore();
+  const { tasks, fetchTasks } = useTaskStore();
 
-  console.log("filterData", filterData);
+  // Load categories and tasks on mount
+  useEffect(() => {
+    fetchCategories();
+    fetchTasks();
+  }, [fetchCategories, fetchTasks]);
 
-  const handlePress = (id: string) => {
-    setActive(id);
-  };
   return (
-    <View className="bg-white flex-1 w-full pt-16 gap-6">
-      <View className="w-full flex-row justify-center items-center">
-        <FlatList
-          className="mx-6"
-          data={filterData}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerClassName="gap-x-2"
-          renderItem={({
-            item,
-          }: {
-            item: Category | { id: string; name: string };
-          }) => (
-            <TouchableOpacity
-              key={item.id}
-              className={cn(
-                "filter",
-                active === item.id ? "bg-amber-500" : "bg-white"
-              )}
-              style={
-                Platform.OS === "android"
-                  ? { elevation: 5, shadowColor: "#878787" }
-                  : {}
-              }
-              onPress={() => handlePress(item.id)}
-            >
-              <Text
-                className={cn(
-                  "body-medium",
-                  active === item.id ? "text-white" : "text-gray-200"
-                )}
-              >
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item: Category | { id: string; name: string }) =>
-            item.id.toString()
-          }
-          ListEmptyComponent={({ item }: { item: Category }) => (
-            <View className="flex-1 justify-center items-center">
-              <Image source={item.emptyStateImage} className="w-10 h-10" />
-              {/* Message avec animation bounce */}
-              <MessageBubble
-                message="Cliquez ici pour créer votre première tâche"
-                bottom={200}
-              />
-              {/* Bouton avec ondes animées */}
-              <View className="absolute bottom-16 right-0 z-50">
-                <RippleButton
-                  title="+"
-                  onPress={() => {}}
-                  rippleColor="rgba(254, 140, 0, 0.25)"
-                  numberOfRipples={3}
-                />
-              </View>
+    <SafeAreaView className="flex-1 bg-white">
+      <FlatList
+        data={tasks}
+        renderItem={({ item }: { item: Task }) => <TaskCard task={item} />}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={{ paddingBottom: 100 }}
+        ListHeaderComponent={() => (
+          <View className="px-5 pt-5 pb-5 gap-5 bg-white">
+            <Searchbar />
+            <CategoriesFilter categories={categories} />
+          </View>
+        )}
+        ListEmptyComponent={() => (
+          <View className="flex-1 h-full flex-col items-center justify-center gap-8 px-5 pt-20 pb-20">
+            {/* Image vide */}
+            <View className="size-64 bg-primary/10 rounded-full p-2">
+              <Image source={images.empty} className="size-full" />
             </View>
-          )}
-        />
-      </View>
-    </View>
+
+            {/* Message avec animation bounce */}
+            <MessageBubble
+              message="Cliquez ici pour créer votre première tâche"
+              className="relative"
+              bottom={-40}
+            />
+
+            {/* Bouton avec ondes animées */}
+            <RippleButton
+              title="+"
+              onPress={() => {}}
+              rippleColor="rgba(254, 140, 0, 0.25)"
+              numberOfRipples={3}
+              bottom={-130}
+              right={20}
+            />
+          </View>
+        )}
+      />
+    </SafeAreaView>
   );
 }
