@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "doutou",
-    "slug": "doutou",
+    "name": "toud",
+    "slug": "toud",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "doutou",
+    "scheme": "toud",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

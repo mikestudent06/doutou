@@ -5,7 +5,7 @@ export default function AppFeatures() {
     <View className="flex-1 bg-white">
       <Text>
         Bienvenue dans{" "}
-        <Text className="text-primary font-quicksand-bold">Doutou</Text>
+        <Text className="text-primary font-quicksand-bold">toud</Text>
       </Text>
     </View>
   );

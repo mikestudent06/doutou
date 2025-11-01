@@ -1,68 +1,41 @@
+import ai from "@/assets/icons/ai.png";
+import analysis from "@/assets/icons/analysis.png";
 import arrowDown from "@/assets/icons/arrow-down.png";
 import arrowRight from "@/assets/icons/arrow-right.png";
 import bag from "@/assets/icons/bag.png";
+import bonjour from "@/assets/icons/bonjour.png";
+import calendar from "@/assets/icons/calendar.png";
+import chat from "@/assets/icons/chat.png";
 import check from "@/assets/icons/check.png";
 import clock from "@/assets/icons/clock.png";
 import dollar from "@/assets/icons/dollar.png";
 import envelope from "@/assets/icons/envelope.png";
 import home from "@/assets/icons/home.png";
+import list from "@/assets/icons/list.png";
+import liste from "@/assets/icons/liste.png";
 import location from "@/assets/icons/location.png";
 import logout from "@/assets/icons/logout.png";
 import minus from "@/assets/icons/minus.png";
+import overview from "@/assets/icons/overview.png";
 import pencil from "@/assets/icons/pencil.png";
 import person from "@/assets/icons/person.png";
 import phone from "@/assets/icons/phone.png";
 import plus from "@/assets/icons/plus.png";
+import pomodoro from "@/assets/icons/pomodoro.png";
 import search from "@/assets/icons/search.png";
 import star from "@/assets/icons/star.png";
 import trash from "@/assets/icons/trash.png";
 import user from "@/assets/icons/user.png";
-import arrowBack from "../assets/icons/arrow-back.png";
-import liste from "@/assets/icons/liste.png";
-import bonjour from "@/assets/icons/bonjour.png";
-import chat from "@/assets/icons/chat.png";
-import analysis from "@/assets/icons/analysis.png";
-
-import avatar from "@/assets/images/avatar.png";
-import avocado from "@/assets/images/avocado.png";
-import bacon from "@/assets/images/bacon.png";
-import bgImage from "@/assets/images/bg.png";
-import burgerOne from "@/assets/images/burger-one.png";
-import burgerTwo from "@/assets/images/burger-two.png";
-import buritto from "@/assets/images/buritto.png";
-import cheese from "@/assets/images/cheese.png";
-import coleslaw from "@/assets/images/coleslaw.png";
-import cucumber from "@/assets/images/cucumber.png";
-import emptyState from "@/assets/images/empty-state.png";
-import fries from "@/assets/images/fries.png";
-import loginGraphic from "@/assets/images/login-graphic.png";
 import logo from "@/assets/images/logo.png";
-import pizzaOne from "@/assets/images/pizza-one.png";
-import salad from "@/assets/images/salad.png";
-import success from "@/assets/images/success.png";
-import tomatoes from "@/assets/images/tomatoes.png";
+import type { Category } from "@/types/category.types";
+import arrowBack from "../assets/icons/arrow-back.png";
 
 export const images = {
   // images
-  bgImage,
-  avatar,
-  avocado,
-  bacon,
-  burgerOne,
-  burgerTwo,
-  buritto,
-  cheese,
-  coleslaw,
-  cucumber,
-  emptyState,
-  fries,
-  loginGraphic,
   logo,
-  pizzaOne,
-  salad,
-  success,
-  tomatoes,
+
   // icons
+  calendar,
   arrowBack,
   arrowDown,
   arrowRight,
@@ -87,6 +60,10 @@ export const images = {
   bonjour,
   chat,
   analysis,
+  ai,
+  overview,
+  list,
+  pomodoro,
 };
 
 export const APP_CONFIG = {
@@ -142,7 +119,7 @@ export const app_features = [
   },
   {
     id: 3,
-    title: "Doutou AI",
+    title: "Toud AI",
     description: "Assistant pour organiser et accélérer vos tâches.",
     icon: images.chat,
   },
@@ -151,5 +128,32 @@ export const app_features = [
     title: "Vue d’ensemble",
     description: "Vue d’ensemble de vos tâches, sous-tâches et catégories.",
     icon: images.analysis,
+  },
+];
+
+export const categories: Category[] = [
+  {
+    id: "1",
+    name: "Travail",
+  },
+  {
+    id: "2",
+    name: "Personnel",
+  },
+  {
+    id: "3",
+    name: "Études",
+  },
+  {
+    id: "4",
+    name: "Anniversaires",
+  },
+  {
+    id: "5",
+    name: "Voyages",
+  },
+  {
+    id: "6",
+    name: "Autres",
   },
 ];

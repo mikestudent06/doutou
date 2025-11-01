@@ -1,6 +1,8 @@
 import "@/app/globals.css";
+import Loader from "@/components/Loader";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 
 export default function RootLayout() {
@@ -19,7 +21,16 @@ export default function RootLayout() {
     }
   }, [error, fontsLoaded]);
 
-  if (!fontsLoaded) return <Stack screenOptions={{ headerShown: false }} />;
+  if (!fontsLoaded) return <Loader />;
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <>
+      <StatusBar translucent backgroundColor="transparent" style="dark" />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+    </>
+  );
 }

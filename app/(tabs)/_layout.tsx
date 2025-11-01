@@ -8,7 +8,7 @@ const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
   <View className="tab-icon">
     <Image
       source={icon as ImageSourcePropType}
-      className="size-10"
+      className="size-6"
       resizeMode="contain"
       tintColor={focused ? "#FE8C00" : "#5D5F6D"}
     />
@@ -30,58 +30,60 @@ export default function TabLayout() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          borderTopLeftRadius: 50,
-          borderTopRightRadius: 50,
-          borderBottomLeftRadius: 50,
-          borderBottomRightRadius: 50,
-          marginHorizontal: 20,
-          height: 80,
+          height: 70,
+          bottom: 0,
           position: "absolute",
-          bottom: 20,
           backgroundColor: "white",
           shadowColor: "#1a1a1a",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 5,
+          shadowOffset: { width: 20, height: 20 },
+          shadowOpacity: 1,
+          boxShadow: "10px 20px 50px 0 #efefef",
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Tâches",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Home" icon={images.home} focused={focused} />
+            <TabBarIcon title="Tâches" icon={images.list} focused={focused} />
           ),
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="calendar"
         options={{
-          title: "Search",
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Search" icon={images.search} focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="cart"
-        options={{
-          title: "Cart",
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Cart" icon={images.bag} focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
+          title: "Calendrier",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
-              title="Profile"
-              icon={images.person}
+              title="Calendrier"
+              icon={images.calendar}
+              focused={focused}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="overview"
+        options={{
+          title: "Aperçu",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              title="Aperçu"
+              icon={images.overview}
+              focused={focused}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="pomodoro"
+        options={{
+          title: "Pomodoro",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              title="Pomodoro"
+              icon={images.pomodoro}
               focused={focused}
             />
           ),
